@@ -3,7 +3,7 @@
 **Approach**:
     We can declare a prefix sum array, and just count the prefix sum once when we instatiate the NumArray object. So, the overall time complexity will be `O(n)`. The space complexity will also be `O(n)`.
 
-The brute force solution would be that whenever we call sumRange, we will calculate the sum from left to right, which would be `O(n)` for each call, resulting it in net `O(n<sup>2</sup>)`.
+The brute force solution would be that whenever we call sumRange, we will calculate the sum from left to right, which would be `O(n)` for each call, resulting it in net $O(n^2)$.
 
 **Code**:
 
