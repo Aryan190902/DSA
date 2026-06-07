@@ -7,6 +7,9 @@ so, $ |nums[idx] - nums[i]| = nums[idx] - nums[i] $.
 Similarily $|nums[idx] - nums[i]| = nums[i] - nums[idx]$ for `idx` < `i`.
 so Sum of absolute difference of indices `idx` < `i` will be $n*nums[i]$ - sum of the rest of elements. 
 
+TC: `O(n)`
+SC: `O(n)`
+
 **Code**:
 ```cpp
 class Solution {

@@ -7,6 +7,9 @@
 - For each day `i`, check whether `noninc[i]` >= time and `nondec[i]` >= time.
 - If both conditions are satisfied, add i to the result as it has at least time non-increasing days before it and at least time non-decreasing days after it.
 
+TC: `O(n)`
+SC: `O(n)`
+
 ```cpp
 class Solution {
 public:
