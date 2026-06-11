@@ -1,4 +1,4 @@
-**Question**: [Range Sum Query 2D - Immutable]()
+**Question**: [Range Sum Query 2D - Immutable](https://leetcode.com/problems/range-sum-query-2d-immutable/)
 
 **Approach**:
 - Create a 2D sum array named `pref`.
