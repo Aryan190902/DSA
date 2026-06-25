@@ -4,8 +4,8 @@
 - Create 2 arrays to note what rows, and cols need to be 0. 
 - Set them zero.
 
-TC: $O(n^2)$ -> Looping through matrix
-SC: $O(n)$ -> Arrays
+TC: $O(nm)$ -> Looping through matrix
+SC: $O(n)+O(m)$ -> Arrays
 
 **Code**:
 ```cpp
