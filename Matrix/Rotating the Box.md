@@ -48,3 +48,30 @@ public:
     }
 };
 ```
+#### Optimized Solution
+
+We can also do it in a single pass, like this:
+```cpp
+class Solution {
+public:
+    vector<vector<char>> rotateTheBox(vector<vector<char>>& boxGrid) {
+        int m = boxGrid.size(), n = boxGrid[0].size();
+        vector<vector<char>>ans(n, vector<char>(m, '.'));
+
+        for(int i = 0 ; i < m ; i++){
+            int base = n-1;
+            for(int j = n-1 ; j >= 0 ; j--){
+                if(boxGrid[i][j] == '*'){
+                    // obstacle
+                    base = j-1;
+                    ans[j][m-i-1] = '*';
+                }else if(boxGrid[i][j] == '#'){
+                    ans[base--][m-i-1] = '#';
+                }
+            }
+        }
+
+        return ans;
+    }
+};
+```
