@@ -59,6 +59,8 @@ for example:
 | 10     | dead -> alive  | 
 | 11     | alive -> alive |
 
+New SC: `O(1)`
+
 **Code**:
 ```cpp
 class Solution {
