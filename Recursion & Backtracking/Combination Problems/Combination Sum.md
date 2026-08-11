@@ -8,8 +8,8 @@
 - If `t` becomes zero, add the current combination to `ans`.
 - The search never moves backwards over used candidates, so combinations remain non-decreasing and duplicates are avoided naturally.
 
-TC: `O(n * (target/min(candidates)))` in practice, with exponential combinations in the worst case.
-SC: `O(target/min(candidates))` recursion depth plus output space.
+TC: `O(n log n + n^(target/min(candidates)) * target/min(candidates))` in the worst case.
+SC: `O(target/min(candidates))` auxiliary space for recursion and `temp`, excluding output space.
 
 **Code**:
 ```cpp
