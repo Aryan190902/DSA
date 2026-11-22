@@ -1,43 +1,57 @@
 **Question**: [Combination Sum](https://leetcode.com/problems/combination-sum/)
 
 **Approach**:
+- Sort the candidates so recursion can stop early when `c[i] > t`.
+- Backtrack from index `idx`, allowing each candidate to be reused while preventing permutations and duplicate combinations.
+- Push a candidate into `temp`, recurse with `t - c[i]`, and keep the same index `i` so the candidate may be reused.
+- Pop the candidate after the recursive call to restore the state for the next choice.
+- If the remaining target becomes zero, append the complete combination to `ans`.
 
-- Sort the candidates so the recursion can break early when the remaining target is too small.
-- Use backtracking from index `idx` to try each candidate starting from `idx`, allowing repetition of the same candidate.
-- For each valid `c[i]`, push it into `temp`, recurse with reduced target `t-c[i]` and the same index `i`, then pop it back.
-- If `t` becomes zero, add the current combination to `ans`.
-- The search never moves backwards over used candidates, so combinations remain non-decreasing and duplicates are avoided naturally.
+TC: $O(n \log n + N \times K)$, where $N$ is the number of valid recursive combinations explored and $K$ is the maximum length of a combination. Sorting takes $O(n \log n)$, and copying each combination into the answer takes up to $O(K)$.
 
-TC: `O(n log n + n^(target/min(candidates)) * target/min(candidates))` in the worst case.
-SC: `O(target/min(candidates))` auxiliary space for recursion and `temp`, excluding output space.
+SC: $O(K)$ auxiliary recursion and temporary storage, excluding the output size.
 
 **Code**:
 ```cpp
 class Solution {
 public:
 
-    void solve(vector<int>&c, int t, vector<vector<int>>&ans, vector<int>&temp, int idx){
-        if(t == 0){
+    void solve(vector<int>& c, int t, vector<vector<int>>& ans,
+               vector<int>& temp, int idx) {
+        // The current temp is a valid combination for the original target.
+        if (t == 0) {
             ans.push_back(temp);
             return;
         }
-        // pick or not pick
-        for(int i = idx ; i < c.size() ; i++){ 
-            // Start from i only, since we can pick the same index muliple times
-            if(c[i] > t)    break; // Since array is sorted
 
-            temp.push_back(c[i]);
-            solve(c, t-c[i], ans, temp, i);
-            temp.pop_back();
+        // No candidates remain to complete the target.
+        if (idx == c.size()) return;
+
+        // Start at idx so candidates earlier than idx are never reconsidered.
+        for (int i = idx; i < c.size(); i++) {
+
+            // Candidates are sorted, so all later candidates will also be too large.
+            if (c[i] <= t) {
+                temp.push_back(c[i]); // Choose c[i] for the current combination.
+
+                // Keep i unchanged because c[i] may be reused.
+                solve(c, t - c[i], ans, temp, i);
+
+                temp.pop_back(); // Undo the choice before trying the next candidate.
+            } else {
+                break;
+            }
         }
     }
 
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        vector<vector<int>>ans;
-        vector<int>temp;
+        // Sorting enables the early break for candidates larger than the target.
         sort(candidates.begin(), candidates.end());
-        int n = candidates.size();
+
+        vector<vector<int>> ans;
+        vector<int> temp;
         solve(candidates, target, ans, temp, 0);
+
         return ans;
     }
 };
