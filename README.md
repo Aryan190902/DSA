@@ -1,12 +1,10 @@
 # Data Structures & Algorithms
 
-A curated collection of Data Structures and Algorithms problems solved during my interview preparation.
+Interview prep notes covering data structures and algorithms in C++, system design, and databases.
 
 ## 📌 About
 
-This repository contains solutions to various DSA problems from platforms like:
-
-- LeetCode
+This repository contains C++ solutions to LeetCode problems alongside system design and database notes.
 
 The primary goal of this repository is to:
 
@@ -67,11 +65,11 @@ The primary goal of this repository is to:
 
 For every problem, I try to document:
 
-1. Intuition
+1. Link to the original problem
 2. Approach
 3. Time Complexity
 4. Space Complexity
-5. Optimized Code
+5. Commented C++ solution code
 
 This helps in quick revision before interviews.
 
